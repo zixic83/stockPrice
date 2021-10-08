@@ -4,5 +4,7 @@
   "packagerPort": 19000,
   "expoServerNgrokUrl": "https://q6-i69.anonymous.stockprice.exp.direct",
   "packagerNgrokUrl": "https://packager.q6-i69.anonymous.stockprice.exp.direct",
-  "ngrokPid": 16700
+  "ngrokPid": 9812,
+  "packagerPid": null,
+  "webpackServerPort": null
 }
