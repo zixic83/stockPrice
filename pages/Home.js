@@ -3,6 +3,7 @@ import { View, ScrollView, StyleSheet, RefreshControl,Text } from "react-native"
 import { FAB } from "react-native-paper";
 import Item from "../components/Item";
 import Dialogue from "../components/Dialogue";
+import AddButton from "../components/AddButton";
 
 export default function Home() {
   const [refreshing, setRefreshing] = useState(false);
@@ -42,15 +43,6 @@ export default function Home() {
     }
   }
 
-  const resetDia = () => {
-    setShowDia(false)
-  }
-
-  const handleSubmit = (code) => {
-    setCodeList([...codeList,code])
-  }
-
-
   return (
     <>
       <ScrollView
@@ -65,24 +57,10 @@ export default function Home() {
           }
         })}
       </ScrollView>
-      <FAB
-        icon="plus"
-        onPress={useCallback(() => { setShowDia(true)}, [refreshing])}
-        style={styles.fab}
-      />
-      <Dialogue isVisible={showDia} resetDia={resetDia} handleSubmit={handleSubmit}/>
+      <AddButton setCodeList={setCodeList} codeList={codeList}/>
     </>
   );
 }
 
 // https://geekscoders.com/courses/react-native/lessons/react-native-floating-action-button/
-const styles = StyleSheet.create({
-  fab: {
-    position: "absolute",
-    margin: 15,
-    right: 0,
-    bottom: 0,
-    flex: 1,
-    backgroundColor: "rgba(245, 40, 145, 1)",
-  },
-});
+

@@ -14,7 +14,7 @@ export default function SearchBar({handleSubmit}) {
         />
         <Button
           mode="contained"
-          onPress={() => handleSubmit(searchQuery)}
+                onPress={() => { handleSubmit(searchQuery) }}
         >
           Submit
         </Button>
