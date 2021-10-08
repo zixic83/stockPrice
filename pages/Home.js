@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback,useMemo,memo } from "react";
 import { View, ScrollView, StyleSheet, RefreshControl,Text } from "react-native";
 import { FAB } from "react-native-paper";
 import Item from "../components/Item";
-import SearchBar from "../components/SearchBar";
+import Dialogue from "../components/Dialogue";
 
 export default function Home() {
   const [refreshing, setRefreshing] = useState(false);
@@ -28,25 +28,28 @@ export default function Home() {
     return a.localeCompare(b); //using String.prototype.localCompare()
   });
 
-  const onRefresh = () => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     setUpdate(!update);
     setRefreshing(false);
-  };
+  },[refreshing]);
 
-  const loadData = (stock) => {
+  const loadData =(stock) => {
     if (update) {
-      return <Item key={stock} code={stock} isUpdate={update} />;
+      return <Item key={stock} code={stock} isUpdate={update} test={refreshing}/>;
     } else {
       return <Item key={stock} code={stock} />;
     }
-  };
-
-  const loadDia = () => {
-    if (showDia) {
-      return ()
-    }
   }
+
+  const resetDia = () => {
+    setShowDia(false)
+  }
+
+  const handleSubmit = (code) => {
+    setCodeList([...codeList,code])
+  }
+
 
   return (
     <>
@@ -64,9 +67,10 @@ export default function Home() {
       </ScrollView>
       <FAB
         icon="plus"
-        onPress={() => setShowDia(true)}
+        onPress={useCallback(() => { setShowDia(true)}, [refreshing])}
         style={styles.fab}
       />
+      <Dialogue isVisible={showDia} resetDia={resetDia} handleSubmit={handleSubmit}/>
     </>
   );
 }
