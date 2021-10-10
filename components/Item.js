@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
 import { List, Avatar, Divider } from "react-native-paper";
 import * as Linking from "expo-linking";
 import Axios from "axios";
-// https://au.finance.yahoo.com/quote/wow.Ax
 
 export default function Item({ code, isUpdate}) {
   const [data, setData] = useState("");
@@ -52,11 +51,12 @@ export default function Item({ code, isUpdate}) {
     if (data && company) {
       return (
         <>
-          <TouchableOpacity onPress={_handlePress}>
+          
             <List.Item
               title={code}
               description={titleCase(company.name_abbrev)}
               left={(props) => (
+                <TouchableOpacity onPress={_handlePress}>
                 <Avatar.Image
                   size={70}
                   style={{ backgroundColor: "white" }}
@@ -64,41 +64,47 @@ export default function Item({ code, isUpdate}) {
                     uri: `https://files.marketindex.com.au/xasx/96x96-png/${code.toLowerCase()}.png`,
                   }}
                 />
+               </TouchableOpacity>   
               )}
               right={(props) => (
-                <View>
-                  <Text>{data.last_price}</Text>
+                <View style={styles.price}>
                   <Text
                     style={
-                      data === undefined
-                        ? null
-                        : {
-                            color:
-                              data.change_in_percent.slice(0, -1) >= 0
-                                ? "green"
-                                : "red",
+                      data === undefined ? null : { color:data.change_in_percent.slice(0, -1) >= 0 ? "green" : "red",
+                      fontSize: 20,
                           }
                     }
                   >
-                    {data.change_price + " "}
                     {data.change_in_percent}
+                  </Text>
+                  <Text>
+                    {data.change_price + " "}
+                    {data.last_price}
                   </Text>
                 </View>
               )}
             />
-          </TouchableOpacity>
+          
           <Divider />
         </>
       );
     }
   };
 
-  console.log('rerendered',code)
+  console.log('rerendered', code)
+  
+
 
   return (
     <View>
       {toRender()}
-      {/* <Button title="More Information" onPress={_handlePress} /> */}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  price: {
+    marginTop: 10,
+    paddingRight:5
+  },
+});

@@ -2,22 +2,38 @@ import React, { useState } from "react";
 import { FAB } from "react-native-paper";
 import { StyleSheet } from "react-native";
 import Dialogue from "../components/Dialogue";
+import Feedback from "./Feedback";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function AddButton({ setCodeList,codeList }) {
-    const [showDia, setShowDia] = useState(false);
-      const resetDia = () => {
-        setShowDia(false);
-      };
+export default function AddButton({ setCodeList, codeList }) {
+  const [showDia, setShowDia] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
 
-      const handleSubmit = (code) => {
-        setCodeList([...codeList, code]);
-      };
+/*   const saveData = async () => {
+    try {
+      const jsonValue = JSON.stringify(codeList);
+      await AsyncStorage.setItem("codeList", jsonValue);
+    } catch (e) {
+      console.log("Error occured");
+    }}; */
+
+    const resetDia = () => {
+      setShowDia(false);
+    };
+
+    const handleSubmit = (code) => {
+      setCodeList([...codeList, code]);
+      setShowFeedback(true);
+      //saveData();
+    };
+  
+
   return (
     <>
       <FAB
         icon="plus"
         onPress={() => {
-          setShowDia(true)
+          setShowDia(true);
         }}
         style={styles.fab}
       />
@@ -26,6 +42,7 @@ export default function AddButton({ setCodeList,codeList }) {
         resetDia={resetDia}
         handleSubmit={handleSubmit}
       />
+      {/* {showFeedback?<Feedback/>:null} */}
     </>
   );
 }

@@ -7,6 +7,7 @@ import {
   Provider,
   Searchbar,
 } from "react-native-paper";
+import { View } from "react-native";
 import SearchBar from "./SearchBar";
 
 export default function Dialogue({ isVisible, resetDia, handleSubmit }) {
@@ -28,21 +29,24 @@ export default function Dialogue({ isVisible, resetDia, handleSubmit }) {
             visible={isVisible}
             onDismiss={hideModal}
             contentContainerStyle={containerStyle}
-          >
+                  >
+       <View renderToHardwareTextureAndroid>               
             <Searchbar
               placeholder="Search"
               onChangeText={onChangeSearch}
               value={searchQuery}
             />
-            <Button
-              mode="contained"
-              onPress={() => {
-                handleSubmit(searchQuery);
-                setVisible(false);
-              }}
-            >
-              Submit
-            </Button>
+            
+              <Button
+                mode="contained"
+                onPress={() => {
+                  handleSubmit(searchQuery);
+                  setVisible(false);
+                }}
+              >
+                Submit
+              </Button>
+            </View>
           </Modal>
         </Portal>
       </Provider>
