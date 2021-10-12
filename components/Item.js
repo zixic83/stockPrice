@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Animated,
+  TouchableOpacity,
+} from "react-native";
 import { List, Avatar, Divider } from "react-native-paper";
 import * as Linking from "expo-linking";
 import Axios from "axios";
+import Swipeable from "react-native-gesture-handler/Swipeable";
+import { AntDesign } from "@expo/vector-icons";
 
-export default function Item({ code, isUpdate}) {
+export default function Item({ code, isUpdate,handleDelete }) {
   const [data, setData] = useState("");
   const [company, setCompany] = useState("");
   const baseUrl = `https://www.asx.com.au/asx/1/share/${code}`;
@@ -33,7 +41,7 @@ export default function Item({ code, isUpdate}) {
   useEffect(() => {
     shareData();
     companyData();
-  },[isUpdate]);
+  }, [isUpdate]);
 
   const titleCase = (s) => {
     //titleCase(company.name_full)
@@ -41,37 +49,59 @@ export default function Item({ code, isUpdate}) {
       .replace(/^[-_]*(.)/, (_, c) => c.toUpperCase()) // Initial char (after -/_)
       .replace(/[-_]+(.)/g, (_, c) => " " + c.toUpperCase()); // First char after each -/_
     return changed;
-    };
-    
- _handlePress = () => {
-   Linking.openURL(`https://au.finance.yahoo.com/quote/${code}.Ax`);
-    };
-    
+  };
+
+  _handlePress = () => {
+    Linking.openURL(`https://au.finance.yahoo.com/quote/${code}.Ax`);
+  };
+
+  const rightActions = (stock) => {
+    return (
+      <View style={styles.rightActions}>
+        <TouchableOpacity
+          style={[styles.actionText]}
+          onPress={() => handleDelete(stock)}
+        >
+          <AntDesign name="delete" size={24} color="white" />
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
   const toRender = () => {
     if (data && company) {
       return (
         <>
-          
+          <Swipeable
+            renderRightActions={() => rightActions(code)}
+            key={code}
+          >
             <List.Item
               title={code}
               description={titleCase(company.name_abbrev)}
               left={(props) => (
                 <TouchableOpacity onPress={_handlePress}>
-                <Avatar.Image
-                  size={70}
-                  style={{ backgroundColor: "white" }}
-                  source={{
-                    uri: `https://files.marketindex.com.au/xasx/96x96-png/${code.toLowerCase()}.png`,
-                  }}
-                />
-               </TouchableOpacity>   
+                  <Avatar.Image
+                    size={70}
+                    style={{ backgroundColor: "white" }}
+                    source={{
+                      uri: `https://files.marketindex.com.au/xasx/96x96-png/${code.toLowerCase()}.png`,
+                    }}
+                  />
+                </TouchableOpacity>
               )}
               right={(props) => (
                 <View style={styles.price}>
                   <Text
                     style={
-                      data === undefined ? null : { color:data.change_in_percent.slice(0, -1) >= 0 ? "green" : "red",
-                      fontSize: 20,
+                      data === undefined
+                        ? null
+                        : {
+                            color:
+                              data.change_in_percent.slice(0, -1) >= 0
+                                ? "green"
+                                : "red",
+                            fontSize: 20,
                           }
                     }
                   >
@@ -84,27 +114,33 @@ export default function Item({ code, isUpdate}) {
                 </View>
               )}
             />
-          
-          <Divider />
+            <Divider />
+          </Swipeable>
         </>
       );
     }
   };
 
-  console.log('rerendered', code)
-  
+  console.log("rerendered", code);
 
-
-  return (
-    <View>
-      {toRender()}
-    </View>
-  );
+  return <View>{toRender()}</View>;
 }
 
 const styles = StyleSheet.create({
   price: {
     marginTop: 10,
-    paddingRight:5
+    paddingRight: 5,
+  },
+  rightActions: {
+    backgroundColor: "#a62c2a",
+    justifyContent: "center",
+    flex: 0.15,
+  },
+  actionText: {
+    color: "#fff",
+    fontWeight: "600",
+    padding: 6,
+    marginLeft: 9,
+    backgroundColor: "#a62c2a",
   },
 });

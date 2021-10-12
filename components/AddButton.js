@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FAB } from "react-native-paper";
-import { StyleSheet } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import Dialogue from "../components/Dialogue";
 import Feedback from "./Feedback";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -25,9 +25,10 @@ export default function AddButton({ setCodeList, codeList }) {
       setCodeList([...codeList, code]);
       setShowFeedback(true);
       //saveData();
+      setShowDia(false)
+      Alert.alert('','New stock added')
     };
   
-
   return (
     <>
       <FAB

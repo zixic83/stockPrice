@@ -63,40 +63,22 @@ const getData = async () => {
   }, [refreshing]);
 
   const handleDelete = (key) => {
-    setCodeList(codeList.filter((stock) => {
-      if (stock !== key) {
-        return stock
-      }
-    }))
-  }
-
-  const rightActions = (stock) => {
-    return (
-      
-      <View style={sytles.rightActions}>
-        <TouchableOpacity
-          style={sytles.actionText}
-          onPress={() => handleDelete(stock)}
-        >
-          <AntDesign name="delete" size={24} color="white" />
-        </TouchableOpacity>
-      </View>
+    setCodeList(
+      codeList.filter((stock) => {
+        if (stock !== key) {
+          return stock;
+        }
+      })
     );
-  }
+  };
 
   const loadData = (stock) => {
     if (update) {
       return (
-        <Swipeable
-          renderRightActions={()=>rightActions(stock)}
-          key={stock}
-        >
-          <Item key={stock} code={stock} isUpdate={update} test={refreshing} />
-        </Swipeable>
+        <Item key={stock} code={stock} isUpdate={update} test={refreshing} handleDelete={handleDelete}/>
       );
     } else {
-      return (<Swipeable renderRightActions={()=>rightActions(stock)}
-          key={stock} ><Item key={stock} code={stock} /></Swipeable>);
+      return <Item key={stock} code={stock} handleDelete= {handleDelete}/>
     }
   };
 
