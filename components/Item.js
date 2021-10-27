@@ -94,13 +94,7 @@ export default function Item({ code, isUpdate,handleDelete }) {
                 <View style={styles.price}>
                   <Text
                     style={
-                      data === undefined
-                        ? null
-                        : {
-                            color:
-                              data.change_in_percent.slice(0, -1) >= 0
-                                ? "green"
-                                : "red",
+                      data === undefined ? null : {color:data.change_in_percent.slice(0, -1) >= 0 ? "green": "red",
                             fontSize: 20,
                           }
                     }

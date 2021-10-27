@@ -5,5 +5,6 @@ To-do:
 1. search suggestion
 1. restrict input
 1. check user input
+1. profolio refresh
 
  

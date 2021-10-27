@@ -22,7 +22,7 @@ export default function AddButton({ setCodeList, codeList }) {
     };
 
     const handleSubmit = (code) => {
-      setCodeList([...codeList, code]);
+      setCodeList([...codeList, code.toUpperCase()]);
       setShowFeedback(true);
       //saveData();
       setShowDia(false)

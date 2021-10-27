@@ -28,29 +28,6 @@ export default function Home() {
     "VTS",
   ]);
 
-  /*   const saveData = async () => {
-    try {
-      const jsonValue = JSON.stringify(codeList);
-      await AsyncStorage.setItem('codeList',jsonValue)
-    } catch(e) {
-      console.log('Error occured')
-    }
-  }
-
-  
-const getData = async () => {
-  try {
-    const jsonValue = await AsyncStorage.getItem("codeList");
-    jsonValue != null ? JSON.parse(jsonValue) : null;
-    setCodeList(jsonValue)
-  } catch (e) {
-    // error reading value
-    console.log("Error occured");
-  }
-  }; */
-
-  //useEffect(() => {getData()}, []);
-
   // https://www.codegrepper.com/code-examples/javascript/react+sort+array+alphabetically
   codeList.sort(function (a, b) {
     return a.localeCompare(b); //using String.prototype.localCompare()
