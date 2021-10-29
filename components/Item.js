@@ -24,7 +24,7 @@ export default function Item({ code, isUpdate,handleDelete }) {
         setData(response.data);
       })
       .catch((error) => {
-        alert("not found");
+        alert(error);
       });
   };
 
@@ -34,7 +34,7 @@ export default function Item({ code, isUpdate,handleDelete }) {
         setCompany(response.data);
       })
       .catch((error) => {
-        alert("not found");
+        alert(error);
       });
   };
 
@@ -51,7 +51,7 @@ export default function Item({ code, isUpdate,handleDelete }) {
     return changed;
   };
 
-  _handlePress = () => {
+  const handlePress = () => {
     Linking.openURL(`https://au.finance.yahoo.com/quote/${code}.Ax`);
   };
 
@@ -80,7 +80,7 @@ export default function Item({ code, isUpdate,handleDelete }) {
               title={code}
               description={titleCase(company.name_abbrev)}
               left={(props) => (
-                <TouchableOpacity onPress={_handlePress}>
+                <TouchableOpacity onPress={handlePress}>
                   <Avatar.Image
                     size={70}
                     style={{ backgroundColor: "white" }}

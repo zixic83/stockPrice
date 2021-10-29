@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.9",
+    "@react-native-community/art": "^1.2.0",
     "@react-navigation/drawer": "^6.1.6",
     "@react-navigation/native": "^6.0.4",
     "axios": "^0.22.0",
@@ -20,11 +21,15 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-paper": "^4.9.2",
+    "react-native-pie": "^1.1.2",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
+    "react-native-svg": "^12.1.1",
     "react-native-web": "~0.13.12",
-    "use-title-case": "0.0.5"
+    "use-title-case": "0.0.5",
+    "victory": "^36.1.0",
+    "victory-native": "^35.5.5"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

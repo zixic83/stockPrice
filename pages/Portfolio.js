@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react';
-import { View } from 'react-native';
+import { View,StyleSheet } from 'react-native';
 import { DataTable } from "react-native-paper";
+import ProfolioPie from '../components/ProfolioPie';
+
 
 import TableRow from '../components/TableRow';
 const optionsPerPage = [2, 3, 4];
@@ -34,32 +36,30 @@ const existingData = [
 export default function Portfolio() {
       const [page, setPage] = React.useState(0);
     const [itemsPerPage, setItemsPerPage] = React.useState(optionsPerPage[0]);
-    
-
-     
 
    useEffect(() => {
           setPage(0);
-        //shareData();
       }, [itemsPerPage]);
-    
-    return (
+  console.log('1 round')
+
+  
+  
+  return (
+    <>
+      <ProfolioPie data={existingData}/>
       <View>
-        <DataTable>
+        <DataTable style={styles.table}>
           <DataTable.Header>
             <DataTable.Title>Code</DataTable.Title>
-                    <DataTable.Title numeric>Avg Price</DataTable.Title>
-                    {/* Earning = (current price - avg price) / avg price */}
+            <DataTable.Title numeric>Avg Price</DataTable.Title>
             <DataTable.Title numeric>Earning</DataTable.Title>
             <DataTable.Title numeric>Price</DataTable.Title>
             <DataTable.Title numeric>Change</DataTable.Title>
           </DataTable.Header>
 
-                {existingData.map(stock => {
-                    return (
-                      <TableRow stock={stock} key={stock.code}></TableRow>
-                    );
-            })}
+          {existingData.map((stock) => {
+            return <TableRow stock={stock} key={stock.code}></TableRow>;
+          })}
 
           <DataTable.Pagination
             page={page}
@@ -74,5 +74,16 @@ export default function Portfolio() {
           />
         </DataTable>
       </View>
-    );
+    </>
+  );
 }
+
+const styles = StyleSheet.create({
+  table: {
+    //alignItems: "center",
+  },
+  title: {
+    fontSize: 24,
+    //margin: 10,
+  },
+});

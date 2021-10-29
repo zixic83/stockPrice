@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { DataTable } from "react-native-paper";
-import {Text,StyleSheet} from "react-native"
+import { Text, StyleSheet } from "react-native";
 import Axios from "axios";
 
 
-export default function TableRow({ stock, currentPrice }) {
+export default function TableRow({ stock}) {
     const [data, setData] = useState("");
     const baseUrl = `https://www.asx.com.au/asx/1/share/${stock.code}`;
 
@@ -20,20 +20,20 @@ export default function TableRow({ stock, currentPrice }) {
 
    useEffect(() => {
      shareData();
-   });
-    return (
+   },[]);
+  
+  let earning = (((parseInt(data.last_price) - stock.avgPrice) / stock.avgPrice) * 100).toFixed(2)
+  //console.log(data.last_price, stock.avgPrice);
+  return (
+    <>
       <DataTable.Row>
         <DataTable.Cell>{stock.code}</DataTable.Cell>
         <DataTable.Cell numeric>{stock.avgPrice}</DataTable.Cell>
         <DataTable.Cell numeric>
           <Text
-            style={data === ""? null: {color:data.change_in_percent.slice(0, -1) >= 0? "green": "red",}}
+            style={data === ""? null: {color:earning >= 0? "green": "red",}}
           >
-            {(
-              ((parseInt(data.last_price) - stock.avgPrice) / stock.avgPrice) *
-              100
-            ).toFixed(2)}
-            %
+            {earning}%
           </Text>
         </DataTable.Cell>
         <DataTable.Cell numeric>{data.last_price}</DataTable.Cell>
@@ -54,6 +54,7 @@ export default function TableRow({ stock, currentPrice }) {
           </Text>
         </DataTable.Cell>
       </DataTable.Row>
+      </>
     );
 }
 
