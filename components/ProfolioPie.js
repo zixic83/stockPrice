@@ -7,7 +7,6 @@ export default function ProfolioPie({ data }) {
   const [prices, setPrices] = useState([]);
   const [total, setTotal] = useState(0);
   const [shareValues, setShareValues] = useState([{}]);
-  const [isLoading,setIsLoading] = useState(false)
 
   const getPrices = async () => {
 
@@ -20,12 +19,10 @@ export default function ProfolioPie({ data }) {
       promises.push(axios.get(link));
     });
 
-    setIsLoading(true)
-    const result = await Promise.all(promises);
-    setIsLoading(false)    
-      let currents = [];
+    const result = await Promise.all(promises);  
+    let currents = [];
 
-      result.map((res) => {
+    result.map((res) => {
         currents.push({ x: res.data.code, y: res.data.last_price });
       });
 
@@ -50,18 +47,20 @@ export default function ProfolioPie({ data }) {
     getPrices();
   }, [shareValues]);
 
-
   return (
     <>
-          <VictoryPie
-            data={shareValues}
-            colorScale={"qualitative"}
-            width={400}
-            height={300}
-            labels={({ datum }) =>
-              `${datum.x}:${((datum.y / total) * 100).toFixed(2)} %`
-            }
-          />
+      <View style={{ marginTop: 10 }}>
+        <VictoryPie
+          data={shareValues}
+          colorScale={"qualitative"}
+          width={400}
+          height={300}
+          sortOrder="descending"
+          labels={({ datum }) =>
+            `${datum.x}:${((datum.y / total) * 100).toFixed(2)} %`
+          }
+        />
+      </View>
     </>
   );
 }
