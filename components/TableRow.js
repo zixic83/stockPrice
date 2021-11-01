@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { DataTable } from "react-native-paper";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet,TouchableOpacity,View } from "react-native";
 import Axios from "axios";
+import Swipeable from "react-native-gesture-handler/Swipeable";
+import { AntDesign } from "@expo/vector-icons";
 
 
-export default function TableRow({ stock}) {
+export default function TableRow({ stock,handleDelete}) {
     const [data, setData] = useState("");
     const baseUrl = `https://www.asx.com.au/asx/1/share/${stock.code}`;
 
@@ -23,9 +25,27 @@ export default function TableRow({ stock}) {
    },[]);
   
   let earning = (((parseInt(data.last_price) - stock.avgPrice) / stock.avgPrice) * 100).toFixed(2)
+
+  const rightActions = (stock) => {
+    return (
+      <View style={styles.rightActions}>
+        <TouchableOpacity
+          style={[styles.actionText]}
+          onPress={() => handleDelete(stock)}
+        >
+          <AntDesign name="delete" size={24} color="white" />
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
   
   return (
     <>
+      <Swipeable
+            renderRightActions={() => rightActions(stock)}
+            key={stock.code}
+          >
       <DataTable.Row>
         <DataTable.Cell>{stock.code}</DataTable.Cell>
         <DataTable.Cell numeric>{stock.avgPrice}</DataTable.Cell>
@@ -54,7 +74,29 @@ export default function TableRow({ stock}) {
           </Text>
         </DataTable.Cell>
       </DataTable.Row>
+      </Swipeable>
       </>
-    );
+  );
+  
 }
+
+const styles = StyleSheet.create({
+  price: {
+    marginTop: 10,
+    paddingRight: 5,
+  },
+  rightActions: {
+    backgroundColor: "#a62c2a",
+    justifyContent: "center",
+    flex: 0.15,
+  },
+  actionText: {
+    color: "#fff",
+    fontWeight: "600",
+    padding: 6,
+    marginLeft: 9,
+    backgroundColor: "#a62c2a",
+  },
+});
+
 

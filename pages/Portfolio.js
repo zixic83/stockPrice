@@ -69,7 +69,16 @@ export default function Portfolio({ navigation }) {
     data.push(input)
     setIsVisible(false)
     //console.log(data)
-    };
+  };
+  
+  const handleDelete = (removedStock) => {
+    const newList = data.filter(stock => {
+      return removedStock.code != stock.code
+    })
+
+    setData(newList);
+    console.log(data)
+  }
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -91,7 +100,7 @@ export default function Portfolio({ navigation }) {
         }
         
       >
-        <ProfolioPie data={data} />
+        <ProfolioPie data={data} key={data}/>
         <DataTable style={styles.table}>
           <DataTable.Header>
             <DataTable.Title>Code</DataTable.Title>
@@ -102,7 +111,7 @@ export default function Portfolio({ navigation }) {
           </DataTable.Header>
           <ScrollView nestedScrollEnabled={true}>
             {data.map((stock) => {
-              return <TableRow stock={stock} key={stock.code}></TableRow>;
+              return <TableRow stock={stock} handleDelete={handleDelete} key={stock.code}></TableRow>;
             })}
           </ScrollView>
         </DataTable>

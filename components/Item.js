@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Animated,
   TouchableOpacity,
 } from "react-native";
 import { List, Avatar, Divider } from "react-native-paper";
