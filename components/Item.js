@@ -115,8 +115,6 @@ export default function Item({ code, isUpdate,handleDelete }) {
     }
   };
 
-  console.log("rerendered", code);
-
   return <View>{toRender()}</View>;
 }
 

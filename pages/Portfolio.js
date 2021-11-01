@@ -1,9 +1,21 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { View, StyleSheet, ScrollView, RefreshControl } from "react-native";
-import { DataTable } from "react-native-paper";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useLayoutEffect,
+} from "react";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  RefreshControl,
+  FlatList,
+} from "react-native";
+import { DataTable,IconButton } from "react-native-paper";
+import PortfolioDia from "../components/PortfolioDia";
 import ProfolioPie from "../components/ProfolioPie";
-
 import TableRow from "../components/TableRow";
+
 
 const existingData = [
   {
@@ -30,11 +42,13 @@ const existingData = [
     code: "VAS",
     avgPrice: 68.9193,
     units: 363,
-  },
+  }
 ];
-export default function Portfolio() {
+export default function Portfolio({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
   const [update, setUpdate] = useState(false);
+  const [data, setData] = useState(existingData);
+  const [isVisible, setIsVisible] = useState(false);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -42,14 +56,42 @@ export default function Portfolio() {
     setRefreshing(false);
     console.log("rerendered");
   }, [refreshing]);
+
+  const addStock = () => {
+    setIsVisible(true);
+  }
+
+  const setDia = () => {
+    setIsVisible(false)
+  }
+
+  const handleSubmit = (input) => {
+    data.push(input)
+    setIsVisible(false)
+    //console.log(data)
+    };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <IconButton
+          icon="plus"
+          size={28}
+          onPress={addStock}
+        />
+      ),
+    });
+  }, [navigation]);
+
   return (
     <>
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        
       >
-        <ProfolioPie data={existingData} />
+        <ProfolioPie data={data} />
         <DataTable style={styles.table}>
           <DataTable.Header>
             <DataTable.Title>Code</DataTable.Title>
@@ -58,20 +100,25 @@ export default function Portfolio() {
             <DataTable.Title numeric>Price</DataTable.Title>
             <DataTable.Title numeric>Change</DataTable.Title>
           </DataTable.Header>
-          <ScrollView>
-            {existingData.map((stock) => {
+          <ScrollView nestedScrollEnabled={true}>
+            {data.map((stock) => {
               return <TableRow stock={stock} key={stock.code}></TableRow>;
             })}
           </ScrollView>
         </DataTable>
       </ScrollView>
+      <PortfolioDia
+        isVisible={isVisible}
+        setDia={setDia}
+        handleSubmit={handleSubmit}
+      />
     </>
   );
 }
 
 const styles = StyleSheet.create({
   table: {
-    height: 300,
+    height: 290,
   },
   title: {
     fontSize: 24,

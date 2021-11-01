@@ -19,7 +19,8 @@ export default function ProfolioPie({ data }) {
       promises.push(axios.get(link));
     });
 
-    const result = await Promise.all(promises);  
+    try {
+       const result = await Promise.all(promises);  
     let currents = [];
 
     result.map((res) => {
@@ -40,6 +41,10 @@ export default function ProfolioPie({ data }) {
       });
     setTotal(currentTotal);
     setShareValues(valuess);
+    } catch (error) {
+      console.log(error)
+    }
+   
     
   };
 

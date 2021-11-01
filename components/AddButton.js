@@ -9,14 +9,6 @@ export default function AddButton({ setCodeList, codeList }) {
   const [showDia, setShowDia] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
 
-/*   const saveData = async () => {
-    try {
-      const jsonValue = JSON.stringify(codeList);
-      await AsyncStorage.setItem("codeList", jsonValue);
-    } catch (e) {
-      console.log("Error occured");
-    }}; */
-
     const resetDia = () => {
       setShowDia(false);
     };
@@ -24,7 +16,6 @@ export default function AddButton({ setCodeList, codeList }) {
     const handleSubmit = (code) => {
       setCodeList([...codeList, code.toUpperCase()]);
       setShowFeedback(true);
-      //saveData();
       setShowDia(false)
       Alert.alert('','New stock added')
     };

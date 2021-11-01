@@ -29,7 +29,6 @@ export default function Dialogue({ isVisible, resetDia, handleSubmit }) {
 
   const containerStyle = {
     backgroundColor: "white",
-    marginTop: -360,
     marginLeft: 7,
     marginRight:7
   };

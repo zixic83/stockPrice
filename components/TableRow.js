@@ -23,7 +23,7 @@ export default function TableRow({ stock}) {
    },[]);
   
   let earning = (((parseInt(data.last_price) - stock.avgPrice) / stock.avgPrice) * 100).toFixed(2)
-  //console.log(data.last_price, stock.avgPrice);
+  
   return (
     <>
       <DataTable.Row>
