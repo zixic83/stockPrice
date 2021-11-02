@@ -9,7 +9,6 @@ import {
   StyleSheet,
   ScrollView,
   RefreshControl,
-  FlatList,
 } from "react-native";
 import { DataTable,IconButton } from "react-native-paper";
 import PortfolioDia from "../components/PortfolioDia";

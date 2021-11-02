@@ -1,32 +1,37 @@
-import React, { useState, useEffect, useCallback, useMemo, memo } from "react";
+import React, { useState, useEffect, useCallback} from "react";
 import {
   View,
   ScrollView,
   StyleSheet,
   RefreshControl,
-  Text,
-  Button,
-  TouchableOpacity,
 } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { FAB } from "react-native-paper";
 import Item from "../components/Item";
-import Dialogue from "../components/Dialogue";
 import AddButton from "../components/AddButton";
-import Swipeable from "react-native-gesture-handler/Swipeable";
-import { AntDesign } from "@expo/vector-icons";
+import axios from "axios";
 
 export default function Home() {
   const [refreshing, setRefreshing] = useState(false);
   const [update, setUpdate] = useState(false);
-  const [codeList, setCodeList] = useState([
-    "QAN",
-    "MP1",
-    "A2M",
-    "VAS",
-    "RIO",
-    "VTS",
-  ]);
+  const [codeList, setCodeList] = useState([]);
+
+  const getCodeList = async() => {
+    try {
+      const result = await axios.get(
+        "http://192.168.0.78:5000/api/v1/codeList"
+      );
+      
+      const prevList = result.data.stocks.map(stock => {
+        return stock.code
+      })
+      setCodeList(prevList)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getCodeList()
+},[])
 
   // https://www.codegrepper.com/code-examples/javascript/react+sort+array+alphabetically
   codeList.sort(function (a, b) {
@@ -39,6 +44,19 @@ export default function Home() {
     setRefreshing(false);
   }, [refreshing]);
 
+    const updateList = async (code) => {
+      // send DELETE request to back end
+      try {
+        axios.delete("http://192.168.0.78:5000/api/v1/codeList", {
+          data: {
+            code:code,
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
   const handleDelete = (key) => {
     setCodeList(
       codeList.filter((stock) => {
@@ -47,6 +65,8 @@ export default function Home() {
         }
       })
     );
+
+    updateList(key);
   };
 
   const loadData = (stock) => {
