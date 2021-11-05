@@ -23,7 +23,7 @@ export default function Home() {
       const prevList = result.data.stocks.map(stock => {
         return stock.code
       })
-      setCodeList(prevList)
+      setCodeList(prevList);
     } catch (error) {
       console.log(error)
     }
