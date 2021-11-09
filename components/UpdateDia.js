@@ -11,7 +11,12 @@ import {
 } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
 
-export default function UpdateDia({ setIsPressed, isPressed, selectedRow }) {
+export default function UpdateDia({
+  setIsPressed,
+  isPressed,
+  selectedRow,
+  handleUpdate,
+}) {
   const [checked, setChecked] = React.useState("average");
   const [text, setText] = React.useState("");
 
@@ -52,7 +57,10 @@ export default function UpdateDia({ setIsPressed, isPressed, selectedRow }) {
           />
           <Button
             mode="contained"
-            onPress={() => console.log("Pressed")}
+            onPress={() => {
+                handleUpdate({ type: checked, input: text });
+                setIsPressed(false)
+            }}
             style={styles.button}
           >
             Submit

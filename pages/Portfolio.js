@@ -18,7 +18,7 @@ export default function Portfolio({ navigation }) {
   const [data, setData] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
-  const [selectedRow, setSelectedRow] = useState('');
+  const [selectedRow, setSelectedRow] = useState("");
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -59,12 +59,43 @@ export default function Portfolio({ navigation }) {
     } catch (error) {
       console.log(error);
     }
-
   };
 
-  const handleUpdate = () => {
-    
-  }
+  const handleUpdate = async (updateValue) => {
+    const updatedData = data.map((stock) => {
+      if (updateValue.type === "average") {
+        if (stock.code === selectedRow) {
+          try {
+            axios.patch("http://192.168.0.78:5000/api/v1/portfolio", {
+              ...stock,
+              avgPrice: parseFloat(updateValue.input),
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        }
+        return stock.code === selectedRow
+          ? { ...stock, avgPrice: parseFloat(updateValue.input) }
+          : stock;
+      } else {
+        if (stock.code === selectedRow) {
+          try {
+            axios.patch("http://192.168.0.78:5000/api/v1/portfolio", {
+              ...stock,
+              units: parseFloat(updateValue.input),
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        }
+        return stock.code === selectedRow
+          ? { ...stock, units: parseFloat(updateValue.input) }
+          : stock;
+      }
+    });
+
+    setData(updatedData);
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -132,7 +163,12 @@ export default function Portfolio({ navigation }) {
         setDia={setDia}
         handleSubmit={handleSubmit}
       />
-      <UpdateDia setIsPressed={setIsPressed} isPressed={isPressed} selectedRow={selectedRow}/>
+      <UpdateDia
+        setIsPressed={setIsPressed}
+        isPressed={isPressed}
+        selectedRow={selectedRow}
+        handleUpdate={handleUpdate}
+      />
     </>
   );
 }

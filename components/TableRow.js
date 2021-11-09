@@ -27,7 +27,7 @@ export default function TableRow({ stock, handleDelete, setIsPressed, setSelecte
   }, []);
 
   let earning = (
-    ((parseInt(data.last_price) - stock.avgPrice) / stock.avgPrice) *
+    ((parseFloat(data.last_price) - stock.avgPrice) / stock.avgPrice) *
     100
   ).toFixed(2);
 
