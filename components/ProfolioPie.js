@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import axios from "axios";
 import { VictoryPie } from "victory-native";
 import { View, Text } from "react-native";
@@ -7,6 +7,7 @@ export default function ProfolioPie({ data }) {
   const [prices, setPrices] = useState([]);
   const [total, setTotal] = useState(0);
   const [shareValues, setShareValues] = useState([{}]);
+  const mountedRef = useRef(true);
 
   const getPrices = async () => {
 
@@ -49,7 +50,12 @@ export default function ProfolioPie({ data }) {
   };
 
   useEffect(() => {
+
     getPrices();
+    return () => {
+      // https://stackoverflow.com/questions/56450975/to-fix-cancel-all-subscriptions-and-asynchronous-tasks-in-a-useeffect-cleanup-f
+      mountedRef.current = false;
+    };
   }, [shareValues]);
 
   return (

@@ -57,9 +57,11 @@ export default function UpdateDia({
           />
           <Button
             mode="contained"
+            disabled={text.length != 3}
             onPress={() => {
                 handleUpdate({ type: checked, input: text });
-                setIsPressed(false)
+              setIsPressed(false);
+              setText("");
             }}
             style={styles.button}
           >

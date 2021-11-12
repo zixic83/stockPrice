@@ -6,7 +6,7 @@ import React, {
 } from "react";
 import { View, StyleSheet, ScrollView, RefreshControl } from "react-native";
 import { DataTable, IconButton } from "react-native-paper";
-import PortfolioDia from "../components/PortfolioDia";
+import PortfolioDia1 from "../components/PortfolioDia1";
 import ProfolioPie from "../components/ProfolioPie";
 import TableRow from "../components/TableRow";
 import axios from "axios";
@@ -158,7 +158,7 @@ export default function Portfolio({ navigation }) {
           </ScrollView>
         </DataTable>
       </ScrollView>
-      <PortfolioDia
+      <PortfolioDia1
         isVisible={isVisible}
         setDia={setDia}
         handleSubmit={handleSubmit}
