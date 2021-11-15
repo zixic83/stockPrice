@@ -185,6 +185,7 @@ export default function Portfolio({ navigation }) {
   );
 }
 
+
 const styles = StyleSheet.create({
   table: {
     height: 290,
