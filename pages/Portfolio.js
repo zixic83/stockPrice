@@ -32,7 +32,16 @@ export default function Portfolio({ navigation }) {
   };
 
   const handleSubmit = async (input) => {
-    data.push(input);
+    let isDuplicate = false;
+    data.forEach((ele) => {
+      if (ele.code === input.code) {
+        isDuplicate = true
+      }
+    })
+    if (isDuplicate) {
+      alert(`${input.code} is already in the portfolio`)
+    } else {
+      data.push(input);
     try {
       const res = await axios.post(
         "http://192.168.0.78:5000/api/v1/portfolio",
@@ -41,6 +50,8 @@ export default function Portfolio({ navigation }) {
     } catch (error) {
       console.log(error);
     }
+    }
+    
     setIsVisible(false);
   };
 
@@ -152,6 +163,7 @@ export default function Portfolio({ navigation }) {
                   setIsPressed={setIsPressed}
                   setSelectedRow={setSelectedRow}
                   key={stock.code}
+                  setData = {setData}
                 ></TableRow>
               );
             })}

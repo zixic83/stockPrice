@@ -1,16 +1,14 @@
 import React, { useEffect, useState,useRef } from "react";
 import axios from "axios";
-import { VictoryPie } from "victory-native";
+import { VictoryPie, VictoryLabel, VictoryTooltip } from "victory-native";
 import { View, Text } from "react-native";
 
 export default function ProfolioPie({ data }) {
   const [prices, setPrices] = useState([]);
   const [total, setTotal] = useState(0);
   const [shareValues, setShareValues] = useState([{}]);
-  const mountedRef = useRef(true);
 
-  const getPrices = async () => {
-
+  const getPrices = async (cancel) => {
     let links = [];
     data.map((stock) => {
       links.push(`https://www.asx.com.au/asx/1/share/${stock.code}`);
@@ -19,12 +17,14 @@ export default function ProfolioPie({ data }) {
     links.map((link) => {
       promises.push(axios.get(link));
     });
+    if (cancel) return
 
     try {
-       const result = await Promise.all(promises);  
-    let currents = [];
+      
+        const result = await Promise.all(promises);
+      let currents = [];
 
-    result.map((res) => {
+      result.map((res) => {
         currents.push({ x: res.data.code, y: res.data.last_price });
       });
 
@@ -40,23 +40,23 @@ export default function ProfolioPie({ data }) {
           ),
         });
       });
-    setTotal(currentTotal);
-    setShareValues(valuess);
+      setTotal(currentTotal);
+      setShareValues(valuess);
+      
+      
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-   
-    
   };
 
   useEffect(() => {
-
-    getPrices();
+    let cancel = false
+    getPrices(cancel);
     return () => {
-      // https://stackoverflow.com/questions/56450975/to-fix-cancel-all-subscriptions-and-asynchronous-tasks-in-a-useeffect-cleanup-f
-      mountedRef.current = false;
+      cancel = true
     };
   }, [shareValues]);
+
 
   return (
     <>
@@ -67,11 +67,15 @@ export default function ProfolioPie({ data }) {
           width={400}
           height={300}
           sortOrder="descending"
-          labels={({ datum }) =>
-            `${datum.x}:${((datum.y / total) * 100).toFixed(2)} %`
+          style={{ labels: { fontSize: "9.5px" } }}
+          labelComponent={<VictoryLabel angle={50}/>}
+          labels={
+            ({ datum }) =>
+              [datum.x, `${((datum.y / total) * 100).toFixed(2)}%`]
           }
         />
       </View>
     </>
   );
 }
+

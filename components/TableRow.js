@@ -18,7 +18,12 @@ export default function TableRow({ stock, handleDelete, setIsPressed, setSelecte
         setData(response.data);
       })
       .catch((error) => {
-        alert("not found");
+        if (error.response.status === 404) {
+          alert("Stock code entered is invalid")
+          handleDelete(stock)
+        } else {
+          alert("Error occured when adding stock")
+        }
       });
   };
 

@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import { List, Avatar, Divider } from "react-native-paper";
 import * as Linking from "expo-linking";
@@ -23,7 +24,12 @@ export default function Item({ code, isUpdate,handleDelete }) {
         setData(response.data);
       })
       .catch((error) => {
-        alert(error);
+        if (error.response.status === 404) {
+          handleDelete(code)
+           alert("Stock code entered is invalid");
+         } else {
+           alert("Error occured when adding stock");
+         }
       });
   };
 
@@ -33,7 +39,7 @@ export default function Item({ code, isUpdate,handleDelete }) {
         setCompany(response.data);
       })
       .catch((error) => {
-        alert(error);
+handleDelete(code);
       });
   };
 

@@ -60,6 +60,7 @@ export default function PortfolioDia1({ isVisible, setDia, handleSubmit }) {
                   value={props.values.avgPrice}
                   onChangeText={props.handleChange("avgPrice")}
                   style={styles.inputBox}
+                  keyboardType="phone-pad"
                 />
                 <HelperText type="error">
                   {props.touched.avgPrice && props.errors.avgPrice}
@@ -69,6 +70,7 @@ export default function PortfolioDia1({ isVisible, setDia, handleSubmit }) {
                   value={props.values.units}
                   onChangeText={props.handleChange("units")}
                   style={styles.inputBox}
+                  keyboardType="phone-pad"
                 />
                 <HelperText type="error">
                   {props.touched.units && props.errors.units}
