@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { DataTable } from "react-native-paper";
 import { Text, StyleSheet,TouchableOpacity,View } from "react-native";
 import Axios from "axios";
-import Swipeable from "react-native-gesture-handler/Swipeable";
+//import Swipeable from "react-native-gesture-handler/Swipeable";
+import Swipeable from "react-native-swipeable";
 import { AntDesign } from "@expo/vector-icons";
-import UpdateDia from "./UpdateDia";
-
 
 export default function TableRow({ stock, handleDelete, setIsPressed, setSelectedRow }) {
   const [data, setData] = useState("");
@@ -49,6 +48,17 @@ export default function TableRow({ stock, handleDelete, setIsPressed, setSelecte
     );
   };
 
+  const rightContent = (
+    <View style={[styles.actionText]}>
+      <AntDesign
+        name="delete"
+        color="white"
+        size={20}
+        style={{ marginLeft: 20 }}
+      />
+    </View>
+  );
+
   const pressToEdit = () => {
     setIsPressed(true);
     setSelectedRow(stock.code)
@@ -57,8 +67,8 @@ export default function TableRow({ stock, handleDelete, setIsPressed, setSelecte
   return (
     <>
       <Swipeable
-        renderRightActions={() => rightActions(stock)}
-        key={stock.code}
+        rightContent={rightContent}
+        onRightActionRelease={() => handleDelete(stock)}
       >
         <DataTable.Row onPress={pressToEdit}>
           <DataTable.Cell>{stock.code}</DataTable.Cell>
@@ -106,11 +116,11 @@ const styles = StyleSheet.create({
     flex: 0.15,
   },
   actionText: {
-    color: "#fff",
+    backgroundColor: "#fff",
     fontWeight: "600",
-    padding: 6,
-    marginLeft: 9,
+    justifyContent: "center",
     backgroundColor: "#a62c2a",
+    flex: 1,
   },
 });
 

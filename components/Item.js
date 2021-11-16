@@ -4,15 +4,14 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Alert
 } from "react-native";
 import { List, Avatar, Divider } from "react-native-paper";
 import * as Linking from "expo-linking";
 import Axios from "axios";
-import Swipeable from "react-native-gesture-handler/Swipeable";
+import Swipeable from "react-native-swipeable";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function Item({ code, isUpdate,handleDelete }) {
+export default function Item({ code, isUpdate, handleDelete }) {
   const [data, setData] = useState("");
   const [company, setCompany] = useState("");
   const baseUrl = `https://www.asx.com.au/asx/1/share/${code}`;
@@ -25,11 +24,11 @@ export default function Item({ code, isUpdate,handleDelete }) {
       })
       .catch((error) => {
         if (error.response.status === 404) {
-          handleDelete(code)
-           alert("Stock code entered is invalid");
-         } else {
-           alert("Error occured when adding stock");
-         }
+          handleDelete(code);
+          alert("Stock code entered is invalid");
+        } else {
+          alert("Error occured when adding stock");
+        }
       });
   };
 
@@ -39,7 +38,7 @@ export default function Item({ code, isUpdate,handleDelete }) {
         setCompany(response.data);
       })
       .catch((error) => {
-handleDelete(code);
+        handleDelete(code);
       });
   };
 
@@ -60,26 +59,20 @@ handleDelete(code);
     Linking.openURL(`https://au.finance.yahoo.com/quote/${code}.Ax`);
   };
 
-  const rightActions = (stock) => {
-    return (
-      <View style={styles.rightActions}>
-        <TouchableOpacity
-          style={[styles.actionText]}
-          onPress={() => handleDelete(stock)}
-        >
-          <AntDesign name="delete" size={24} color="white" />
-        </TouchableOpacity>
-      </View>
-    );
-  };
+
+  const rightContent = (
+    <View style={[styles.actionText]}>
+      <AntDesign name="delete" color="white" size={30} style={{marginLeft:20}}/>
+    </View>
+  );
 
   const toRender = () => {
     if (data && company) {
       return (
         <>
           <Swipeable
-            renderRightActions={() => rightActions(code)}
-            key={code}
+            rightContent={rightContent}
+            onRightActionRelease={() => handleDelete(code)}
           >
             <List.Item
               title={code}
@@ -99,7 +92,13 @@ handleDelete(code);
                 <View style={styles.price}>
                   <Text
                     style={
-                      data === undefined ? null : {color:data.change_in_percent.slice(0, -1) >= 0 ? "green": "red",
+                      data === undefined
+                        ? null
+                        : {
+                            color:
+                              data.change_in_percent.slice(0, -1) >= 0
+                                ? "green"
+                                : "red",
                             fontSize: 20,
                           }
                     }
@@ -128,16 +127,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingRight: 5,
   },
-  rightActions: {
-    backgroundColor: "#a62c2a",
-    justifyContent: "center",
-    flex: 0.15,
-  },
   actionText: {
-    color: "#fff",
+    backgroundColor: "#fff",
     fontWeight: "600",
-    padding: 6,
-    marginLeft: 9,
+    justifyContent: "center",
     backgroundColor: "#a62c2a",
+    flex: 1,
   },
 });

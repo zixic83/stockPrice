@@ -24,10 +24,12 @@ export default function AddButton({ setCodeList, codeList }) {
   };
 
   const handleSubmit = (code) => {
+   
     const test = codeList.map(
       (ele) => ele.toLowerCase() === code.toLowerCase()
     );
-    if (test.length > 0) {
+     console.log(test)
+    if (test.includes(true)) {
       alert(`${code.toUpperCase()} is already in the list`);
       setShowDia(false);
     } else {
