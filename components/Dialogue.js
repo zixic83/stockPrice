@@ -30,7 +30,9 @@ export default function Dialogue({ isVisible, resetDia, handleSubmit }) {
   const containerStyle = {
     backgroundColor: "white",
     marginLeft: 7,
-    marginRight:7
+    marginRight: 7,
+    padding: 7,
+    borderRadius: 10,
   };
 
   return (
@@ -44,7 +46,7 @@ export default function Dialogue({ isVisible, resetDia, handleSubmit }) {
           >
             <View renderToHardwareTextureAndroid>
               <Searchbar
-                placeholder="Search"
+                placeholder="Stock Code"
                 onChangeText={onChangeSearch}
                 value={searchQuery}
                 autoFocus
@@ -59,7 +61,7 @@ export default function Dialogue({ isVisible, resetDia, handleSubmit }) {
                 disabled={isDisabled}
                 style={styles.button}
               >
-                Submit
+                Add
               </Button>
             </View>
           </Modal>
@@ -72,5 +74,6 @@ export default function Dialogue({ isVisible, resetDia, handleSubmit }) {
 const styles = StyleSheet.create({
   button: {
     marginTop: 5,
-  }
-})
+    backgroundColor: "#3056A1",
+  },
+});

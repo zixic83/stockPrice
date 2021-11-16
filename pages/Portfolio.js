@@ -114,6 +114,7 @@ export default function Portfolio({ navigation }) {
         <IconButton
           icon="plus"
           size={28}
+          color="#fff"
           onPress={() => {
             setIsVisible(true);
           }}

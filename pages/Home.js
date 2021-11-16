@@ -86,6 +86,7 @@ export default function Home() {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        style={sytles.screen}
       >
         {codeList.map((stock) => {
           {
@@ -99,18 +100,9 @@ export default function Home() {
 }
 
 const sytles = StyleSheet.create({
-  rightActions: {
-    backgroundColor: "#a62c2a",
-    justifyContent: "center",
-    flex:0.15
-  },
-  actionText: {
-    color: "#fff",
-    fontWeight: "600",
-    padding: 6,
-    marginLeft:9,
-    backgroundColor: "#a62c2a",
-  },
+  screen: {
+    //backgroundColor:"#D6E8EE"
+  }
 });
 
 // https://geekscoders.com/courses/react-native/lessons/react-native-floating-action-button/

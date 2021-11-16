@@ -66,6 +66,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     flex: 1,
-    backgroundColor: "rgba(245, 40, 145, 1)",
+    backgroundColor: "#233C67",
   },
 });
