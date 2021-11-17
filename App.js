@@ -6,7 +6,7 @@ import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
 
 const Drawer = createDrawerNavigator();
-
+// https://dribbble.com/shots/7036184-Finance-App-Visual-Exploration/attachments/36347?mode=media
 export default function App() {
   return (
     <NavigationContainer>
