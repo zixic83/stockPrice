@@ -19,7 +19,8 @@ This is a stock holding tracking mobile application that allows the user to trac
     - Update stock holding information (average price/units purchased)
     - Review portfolio performance with illustrative table and pie chart
 ### Screenshots
-![Alt text](stockPrice/assets/screenshots/Screenshot_1637146337.png "Optional Title")
+![Alt text](assets/screenshots/Screenshot_1637146337.png "Optional Title")
+![Alt text](assets/screenshots/Screenshot_1637146414.png "Optional Title")
 
 ## Author
 Zixi Chen
