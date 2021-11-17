@@ -1,5 +1,5 @@
 # stockPrice
-This is a stock holding tracking application that allows the user to track stocks as well as their stock portfolio with near real-time data
+This is a stock holding tracking mobile application that allows the user to track ASX stocks as well as their stock portfolio with near real-time data
 
 ## Getting Started
 ### Dependencies
@@ -18,6 +18,8 @@ This is a stock holding tracking application that allows the user to track stock
     - Delete stocks from the stock portfolio
     - Update stock holding information (average price/units purchased)
     - Review portfolio performance with illustrative table and pie chart
+### Screenshots
+![Alt text](Stock-price-app\stockPrice\assets\screenshots\Screenshot_1637146337.png "Optional Title")
 
 ## Author
 Zixi Chen

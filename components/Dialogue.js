@@ -55,8 +55,11 @@ export default function Dialogue({ isVisible, resetDia, handleSubmit }) {
               <Button
                 mode="contained"
                 onPress={() => {
+
                   handleSubmit(searchQuery);
+                  setSearchQuery("");
                   setVisible(false);
+                  
                 }}
                 disabled={isDisabled}
                 style={styles.button}

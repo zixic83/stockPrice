@@ -28,7 +28,7 @@ export default function AddButton({ setCodeList, codeList }) {
     const test = codeList.map(
       (ele) => ele.toLowerCase() === code.toLowerCase()
     );
-     console.log(test)
+     
     if (test.includes(true)) {
       alert(`${code.toUpperCase()} is already in the list`);
       setShowDia(false);

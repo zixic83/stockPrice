@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import { List, Avatar, Divider } from "react-native-paper";
 import * as Linking from "expo-linking";
@@ -25,7 +26,7 @@ export default function Item({ code, isUpdate, handleDelete }) {
       .catch((error) => {
         if (error.response.status === 404) {
           handleDelete(code);
-          alert("Stock code entered is invalid");
+          Alert.alert('Error',"Stock code entered is invalid")
         } else {
           alert("Error occured when adding stock");
         }

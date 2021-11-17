@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DataTable } from "react-native-paper";
-import { Text, StyleSheet,TouchableOpacity,View } from "react-native";
+import { Text, StyleSheet,TouchableOpacity,View,Alert } from "react-native";
 import Axios from "axios";
-//import Swipeable from "react-native-gesture-handler/Swipeable";
 import Swipeable from "react-native-swipeable";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -18,10 +17,10 @@ export default function TableRow({ stock, handleDelete, setIsPressed, setSelecte
       })
       .catch((error) => {
         if (error.response.status === 404) {
-          alert("Stock code entered is invalid")
+          Alert.alert("Error", "Stock code entered is invalid");
           handleDelete(stock)
         } else {
-          alert("Error occured when adding stock")
+          Alert.alert("Error", "Error occured when adding stock");
         }
       });
   };
