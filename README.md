@@ -21,7 +21,9 @@ This is a stock holding tracking mobile application that allows the user to trac
 ### Screenshots
 <p float="left">
 <img src="assets/screenshots/Screenshot_1637146337.png" width="30%" height="30%">
+<img src="assets/screenshots/Screenshot_1637146386.png" width="30%" height="30%">
 <img src="assets/screenshots/Screenshot_1637146414.png" width="30%" height="30%">
+<img src="assets/screenshots/Screenshot_1637146420.png" width="30%" height="30%">
 </p>
 
 ## Author
