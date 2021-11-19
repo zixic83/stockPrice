@@ -9,6 +9,7 @@ import {
   Title,
   Button,
   HelperText,
+  Surface,
 } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
 import { Formik } from "formik";
@@ -32,7 +33,7 @@ export default function UpdateDia({
   const [checked, setChecked] = React.useState("average");
   const [text, setText] = React.useState("");
 
-  const containerStyle = { backgroundColor: "white", padding: 20 };
+  const containerStyle = { backgroundColor: "rgba(0,0,0,0)", padding: 20 };
 
   // https://github.com/callstack/react-native-paper/issues/706
   return (
@@ -43,6 +44,7 @@ export default function UpdateDia({
           onDismiss={() => setIsPressed(false)}
           contentContainerStyle={containerStyle}
         >
+          <Surface style={styles.row}>
           <Title style={styles.title}>Update {selectedRow}</Title>
           <Formik
             initialValues={{ text: "" }}
@@ -52,15 +54,17 @@ export default function UpdateDia({
               setIsPressed(false);
             }}
           >
-            {(props) => (
-              <>
-                <View style={styles.row}>
+            
+              {(props) => (
+                <>
+                  <View style={styles.options}>
                   <RadioButton
                     value="average"
                     status={checked === "average" ? "checked" : "unchecked"}
                     onPress={() => {
                       setChecked("average");
                     }}
+                    color="#224E9C"
                   />
                   <Text style={styles.text}>Average Price</Text>
                   <RadioButton
@@ -69,27 +73,32 @@ export default function UpdateDia({
                     onPress={() => {
                       setChecked("units");
                     }}
+                    color="#224E9C"
                   />
+                  
                   <Text style={styles.text}>Number of Unit</Text>
-                </View>
-                <TextInput
-                  value={props.values.text}
-                  onChangeText={props.handleChange("text")}
-                  mode="outlined"
-                />
-                <HelperText type="error">
-                  {props.touched.text && props.errors.text}
-                </HelperText>
-                <Button
-                  mode="contained"
-                  onPress={props.handleSubmit}
-                  style={styles.button}
-                >
-                  Submit
-                </Button>
-              </>
-            )}
+</View>
+                  <TextInput
+                    value={props.values.text}
+                    onChangeText={props.handleChange("text")}
+                    mode="outlined"
+                    theme={{ colors: { primary: "#728CA8" } }}
+                  />
+                  <HelperText type="error">
+                    {props.touched.text && props.errors.text}
+                  </HelperText>
+                  <Button
+                    mode="contained"
+                    onPress={props.handleSubmit}
+                    style={styles.button}
+                  >
+                    Submit
+                  </Button>
+                </>
+              )}
+            
           </Formik>
+          </Surface>
         </Modal>
       </Portal>
     </Provider>
@@ -98,8 +107,11 @@ export default function UpdateDia({
 
 const styles = StyleSheet.create({
   row: {
-    //flex: 1,
-    flexDirection: "row",
+    padding: 13,
+    justifyContent: "center",
+    elevation: 8,
+    borderRadius: 10,
+    backgroundColor: "#F6F8FB",
   },
   text: {
     marginTop: 6,
@@ -109,5 +121,12 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 5,
+    backgroundColor: "#3056A1",
   },
+  textInput: {
+    backgroundColor: "#728CA8",
+  },
+  options: {
+    flexDirection: "row",
+  }
 });

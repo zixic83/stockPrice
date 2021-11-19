@@ -33,7 +33,7 @@ export default function PortfolioDia1({ isVisible, setDia, handleSubmit }) {
           onDismiss={hideModal}
           contentContainerStyle={styles.modal}
         >
-          <Surface style={styles.surface} >
+          <Surface style={styles.surface}>
             <Headline style={styles.headline}>Add New Stock</Headline>
             <Formik
               initialValues={{ code: "", avgPrice: "", units: "" }}
@@ -54,6 +54,7 @@ export default function PortfolioDia1({ isVisible, setDia, handleSubmit }) {
                     onChangeText={props.handleChange("code")}
                     style={styles.inputBox}
                     mode="outlined"
+                    theme={{ colors: { primary: "#728CA8" } }}
                   />
                   <HelperText type="error">
                     {props.touched.code && props.errors.code}
@@ -65,6 +66,7 @@ export default function PortfolioDia1({ isVisible, setDia, handleSubmit }) {
                     style={styles.inputBox}
                     keyboardType="phone-pad"
                     mode="outlined"
+                    theme={{ colors: { primary: "#728CA8" } }}
                   />
                   <HelperText type="error">
                     {props.touched.avgPrice && props.errors.avgPrice}
@@ -76,6 +78,7 @@ export default function PortfolioDia1({ isVisible, setDia, handleSubmit }) {
                     style={styles.inputBox}
                     keyboardType="phone-pad"
                     mode="outlined"
+                    theme={{ colors: { primary: "#728CA8" } }}
                   />
                   <HelperText type="error">
                     {props.touched.units && props.errors.units}

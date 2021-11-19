@@ -50,16 +50,15 @@ export default function Dialogue({ isVisible, resetDia, handleSubmit }) {
                 onChangeText={onChangeSearch}
                 value={searchQuery}
                 autoFocus
+                theme={{ colors: { primary: "#728CA8" } }}
               />
 
               <Button
                 mode="contained"
                 onPress={() => {
-
                   handleSubmit(searchQuery);
                   setSearchQuery("");
                   setVisible(false);
-                  
                 }}
                 disabled={isDisabled}
                 style={styles.button}
