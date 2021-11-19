@@ -8,8 +8,20 @@ import {
   TextInput,
   Title,
   Button,
+  HelperText,
 } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
+import { Formik } from "formik";
+import * as yup from "yup";
+
+const formSchema = yup.object({
+  text: yup
+    .number()
+    .required()
+    .test("not-negative", "Unit must be greater than 0", (val) => {
+      return parseFloat(val) > 0;
+    }),
+});
 
 export default function UpdateDia({
   setIsPressed,
@@ -32,41 +44,52 @@ export default function UpdateDia({
           contentContainerStyle={containerStyle}
         >
           <Title style={styles.title}>Update {selectedRow}</Title>
-          <View style={styles.row}>
-            <RadioButton
-              value="average"
-              status={checked === "average" ? "checked" : "unchecked"}
-              onPress={() => {
-                setChecked("average");
-              }}
-            />
-            <Text style={styles.text}>Average Price</Text>
-            <RadioButton
-              value="units"
-              status={checked === "units" ? "checked" : "unchecked"}
-              onPress={() => {
-                setChecked("units");
-              }}
-            />
-            <Text style={styles.text}>Number of Unit</Text>
-          </View>
-          <TextInput
-            value={text}
-            onChangeText={(text) => setText(text)}
-            mode="outlined"
-          />
-          <Button
-            mode="contained"
-            disabled={text.length != 3}
-            onPress={() => {
-                handleUpdate({ type: checked, input: text });
+          <Formik
+            initialValues={{ text: "" }}
+            validationSchema={formSchema}
+            onSubmit={(values) => {
+              handleUpdate({ type: checked, input: values.text });
               setIsPressed(false);
-              setText("");
             }}
-            style={styles.button}
           >
-            Submit
-          </Button>
+            {(props) => (
+              <>
+                <View style={styles.row}>
+                  <RadioButton
+                    value="average"
+                    status={checked === "average" ? "checked" : "unchecked"}
+                    onPress={() => {
+                      setChecked("average");
+                    }}
+                  />
+                  <Text style={styles.text}>Average Price</Text>
+                  <RadioButton
+                    value="units"
+                    status={checked === "units" ? "checked" : "unchecked"}
+                    onPress={() => {
+                      setChecked("units");
+                    }}
+                  />
+                  <Text style={styles.text}>Number of Unit</Text>
+                </View>
+                <TextInput
+                  value={props.values.text}
+                  onChangeText={props.handleChange("text")}
+                  mode="outlined"
+                />
+                <HelperText type="error">
+                  {props.touched.text && props.errors.text}
+                </HelperText>
+                <Button
+                  mode="contained"
+                  onPress={props.handleSubmit}
+                  style={styles.button}
+                >
+                  Submit
+                </Button>
+              </>
+            )}
+          </Formik>
         </Modal>
       </Portal>
     </Provider>

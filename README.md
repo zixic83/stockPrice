@@ -6,6 +6,7 @@ This is a stock holding tracking mobile application that allows the user to trac
 * Expo
 * MongoDB Atlas
 ### Installing
+* Back-end server: https://github.com/zixic83/stock-price-back-end
 * An .env file containing the key named MONGO_URI to access the database is needed
 
 ## Functions
@@ -13,6 +14,7 @@ This is a stock holding tracking mobile application that allows the user to trac
     - Check price movements of the stocks in the watchlist
     - Add stocks to the watchlist
     - Delete stocks from the watchlist
+    - Long press company logo to be directed to the corresponding Yahoo Finance page
 - Portfolio
     - Add stocks to the stock portfolio
     - Delete stocks from the stock portfolio
@@ -36,12 +38,10 @@ This project is licensed under the Apache License 2.0
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+* [Selfwealth user portal (for design of Portfolio page)](https://www.dadinvestor.com.au/selfwealth-review/)
+* [TradingView (Watchlist design)](https://is5-ssl.mzstatic.com/image/thumb/Purple125/v4/9b/7d/94/9b7d9448-d810-81c8-5d35-8948f2cd9525/397ea517-a0be-443b-ad18-91de0cefb57d_3.png/750x750bb.jpeg)
+* [Victory](https://github.com/FormidableLabs/victory)
+* [React Native Paper](https://github.com/callstack/react-native-paper)
 
 ## Disclamer
 
