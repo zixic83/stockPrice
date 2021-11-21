@@ -9,10 +9,12 @@ This is a stock holding tracking mobile application that allows the user to trac
 - Expo
 - MongoDB Atlas
 
-### Installing
+### Setup
 
 - Back-end server: https://github.com/zixic83/stock-price-back-end
-- An .env file containing the key named MONGO_URI to access the database is needed
+- A .env file containing the database connection string named MONGO_URI to access the database is needed
+  - See the <a source='https://www.mongodb.com/basics/mongodb-atlas-tutorial'>tutorial</a> for more details
+  - Database name should be <i>stockList</i>
 
 ## Functions
 
@@ -51,6 +53,7 @@ This project is licensed under the Apache License 2.0
 - [TradingView (Watchlist design)](https://is5-ssl.mzstatic.com/image/thumb/Purple125/v4/9b/7d/94/9b7d9448-d810-81c8-5d35-8948f2cd9525/397ea517-a0be-443b-ad18-91de0cefb57d_3.png/750x750bb.jpeg)
 - [Victory](https://github.com/FormidableLabs/victory)
 - [React Native Paper](https://github.com/callstack/react-native-paper)
+- [Data source](https://forums.whirlpool.net.au/archive/2678938)
 
 ## Disclamer
 
