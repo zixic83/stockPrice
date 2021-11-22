@@ -31,8 +31,7 @@ This is a stock holding tracking mobile application that allows the user to trac
   - Review portfolio performance with illustrative table and pie chart
 
 ### Demo
-
-https://user-images.githubusercontent.com/70243423/142787254-79549f01-3c96-480d-b6ec-b60eac0ae0a2.mp4
+https://user-images.githubusercontent.com/70243423/142787536-2a01ed95-dffe-485e-aaa1-35182bc4a4ed.mp4
 
 ## License
 
