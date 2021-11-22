@@ -34,11 +34,6 @@ This is a stock holding tracking mobile application that allows the user to trac
 
 https://user-images.githubusercontent.com/70243423/142787254-79549f01-3c96-480d-b6ec-b60eac0ae0a2.mp4
 
-## Author
-
-Zixi Chen
-https://www.linkedin.com/in/zixi-alice-chen/
-
 ## License
 
 This project is licensed under the Apache License 2.0
