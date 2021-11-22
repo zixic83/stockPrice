@@ -23,6 +23,7 @@ This is a stock holding tracking mobile application that allows the user to trac
   - Add stocks to the watchlist
   - Delete stocks from the watchlist
   - Long press company logo to be directed to the corresponding Yahoo Finance page
+  - Scroll down to refresh
 - Portfolio
   - Add stocks to the stock portfolio
   - Delete stocks from the stock portfolio
@@ -30,6 +31,8 @@ This is a stock holding tracking mobile application that allows the user to trac
   - Review portfolio performance with illustrative table and pie chart
 
 ### Screenshots
+
+
 
 <p float="left">
 <img src="assets/screenshots/Screenshot_1637146337.png" width="30%" height="30%">
