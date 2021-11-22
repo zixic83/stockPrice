@@ -32,17 +32,7 @@ This is a stock holding tracking mobile application that allows the user to trac
 
 ### Demo
 
-
 https://user-images.githubusercontent.com/70243423/142787254-79549f01-3c96-480d-b6ec-b60eac0ae0a2.mp4
-
-
-
-<p float="left">
-<img src="assets/screenshots/Screenshot_1637146337.png" width="30%" height="30%">
-<img src="assets/screenshots/Screenshot_1637146386.png" width="30%" height="30%">
-<img src="assets/screenshots/Screenshot_1637146414.png" width="30%" height="30%">
-<img src="assets/screenshots/Screenshot_1637146420.png" width="30%" height="30%">
-</p>
 
 ## Author
 
