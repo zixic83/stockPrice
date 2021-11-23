@@ -11,7 +11,7 @@ This is a stock holding tracking mobile application that allows the user to trac
 
 ### Setup
 
-- Back-end server: https://github.com/zixic83/stock-price-back-end
+- Back-end server: <a href='https://github.com/zixic83/stock-price-back-end'>Github repository</a>
 - A .env file containing the database connection string named MONGO_URI to access the database is needed
   - See the <a source='https://www.mongodb.com/basics/mongodb-atlas-tutorial'>tutorial</a> for more details
   - Database name should be <i>stockList</i>
@@ -44,6 +44,7 @@ This project is licensed under the Apache License 2.0
 - [Victory](https://github.com/FormidableLabs/victory)
 - [React Native Paper](https://github.com/callstack/react-native-paper)
 - [Data source](https://forums.whirlpool.net.au/archive/2678938)
+- [React/NodeJS tutorial](https://www.udemy.com/user/janis-smilga-3/)
 
 ## Disclamer
 
