@@ -45,6 +45,7 @@ This project is licensed under the Apache License 2.0
 - [React Native Paper](https://github.com/callstack/react-native-paper)
 - [Data source](https://forums.whirlpool.net.au/archive/2678938)
 - [React/NodeJS tutorial](https://www.udemy.com/user/janis-smilga-3/)
+- [Color Palette](https://dribbble.com/shots/7036184-Finance-App-Visual-Exploration)
 
 ## Disclamer
 
