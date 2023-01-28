@@ -47,7 +47,7 @@ This project is licensed under the Apache License 2.0
 - [React/NodeJS tutorial](https://www.udemy.com/user/janis-smilga-3/)
 - [Color Palette](https://dribbble.com/shots/7036184-Finance-App-Visual-Exploration)
 
-## Disclamer
+## Disclaimer
 
 This application is for training purpose only and should NOT be used to form the basis of any financial/investment decisions. As the data is not real time data (20 minutes delay) so it may be INACCURATE and subject to errors.
 
